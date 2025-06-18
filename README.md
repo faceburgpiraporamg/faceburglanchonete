@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FACE BURG - Delivery</title>
     <base target="_self">
+    <title>FACE BURG - Delivery</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@preline/preline@2.0.0/dist/preline.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -15,9 +15,8 @@
                 extend: {
                     colors: {
                         primary: '#FF6B00',
-                        secondary: '#FF9500',
-                        dark: '#1E1E1E',
-                        light: '#F5F5F5'
+                        secondary: '#FFD700',
+                        dark: '#1A1A1A',
                     }
                 }
             }
@@ -28,124 +27,144 @@
             animation: fadeIn 0.5s ease-in;
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-        .cart-item:hover {
-            transform: translateX(5px);
-            transition: transform 0.2s ease;
+        .cart-item-enter {
+            animation: cartItemEnter 0.3s ease-out;
         }
-        .send-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        .menu-category {
-            scroll-margin-top: 1rem;
+        @keyframes cartItemEnter {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
         }
     </style>
 </head>
-<body class="bg-gray-50 dark:bg-dark text-gray-800 dark:text-gray-200 min-h-screen">
-    <div class="container mx-auto px-4 py-8">
-        <header class="flex justify-between items-center mb-8">
-            <div class="flex items-center">
-                <img src="https://via.placeholder.com/50" alt="FACE BURG Logo" class="h-12 mr-3">
-                <h1 class="text-2xl font-bold text-primary">FACE BURG</h1>
-            </div>
-            <div class="flex items-center space-x-4">
-                <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+<body class="bg-gray-100 dark:bg-dark dark:text-white transition-colors duration-300">
+    <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="mb-8 text-center">
+            <h1 class="text-4xl font-bold text-primary mb-2">FACE BURG</h1>
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Funcionamento: 18h às 1h | Segunda a Domingo</p>
+            <div class="flex justify-center gap-4 mb-6">
+                <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
                     <i class="fas fa-moon dark:hidden"></i>
                     <i class="fas fa-sun hidden dark:inline"></i>
                 </button>
-                <div class="relative">
-                    <button id="cart-btn" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 relative">
-                        <i class="fas fa-shopping-cart text-xl"></i>
-                        <span id="cart-count" class="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                    </button>
-                </div>
+                <button id="cart-toggle" class="p-2 rounded-full bg-primary text-white hover:bg-orange-700 transition-colors relative">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-secondary text-dark rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold">0</span>
+                </button>
             </div>
         </header>
 
-        <div class="text-center mb-8">
-            <p class="text-sm text-gray-600 dark:text-gray-400">
-                <i class="fas fa-clock mr-1"></i> Funcionamento: 18h às 1h | Segunda a Domingo
-            </p>
-        </div>
-
-        <div class="flex overflow-x-auto mb-6 pb-2 space-x-2">
-            <a href="#hamburgers" class="category-link px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-sm whitespace-nowrap">Hambúrgueres</a>
-            <a href="#fries" class="category-link px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-sm whitespace-nowrap">Fritas</a>
-            <a href="#acai" class="category-link px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-sm whitespace-nowrap">Açaí</a>
-            <a href="#combos" class="category-link px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-sm whitespace-nowrap">Combos</a>
-            <a href="#drinks" class="category-link px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-sm whitespace-nowrap">Refrigerantes</a>
-            <a href="#sodas" class="category-link px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-sm whitespace-nowrap">Refri Lata</a>
-            <a href="#beers" class="category-link px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-sm whitespace-nowrap">Cervejas</a>
-            <a href="#juices" class="category-link px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-sm whitespace-nowrap">Sucos</a>
-            <a href="#waters" class="category-link px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-sm whitespace-nowrap">Águas</a>
-            <a href="#candies" class="category-link px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-sm whitespace-nowrap">Bomboniere</a>
-            <a href="#extras" class="category-link px-4 py-2 bg-white dark:bg-gray-800 rounded-full shadow-sm whitespace-nowrap">Adicionais</a>
-        </div>
-
-        <main class="grid lg:grid-cols-3 gap-8">
-            <div class="lg:col-span-2">
-                <!-- Menu sections will be generated here by JavaScript -->
+        <!-- Menu Sections -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <!-- Left Column - Hamburgers -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 fade-in">
+                <h2 class="text-2xl font-bold text-primary mb-4 border-b pb-2">HAMBÚRGUERES</h2>
+                <div class="space-y-4" id="hamburgers">
+                    <!-- Hamburgers will be inserted here by JS -->
+                </div>
             </div>
 
-            <div class="hidden lg:block">
-                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 sticky top-4">
-                    <h2 class="text-xl font-bold mb-4 text-primary">Seu Carrinho</h2>
-                    <div id="cart-items" class="mb-4 max-h-96 overflow-y-auto">
-                        <p class="text-gray-500 dark:text-gray-400 text-center py-4">Seu carrinho está vazio</p>
+            <!-- Middle Column - Fries, Açaí, Drinks -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 fade-in">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-primary mb-4 border-b pb-2">FRITAS</h2>
+                    <div class="space-y-4" id="fries">
+                        <!-- Fries will be inserted here by JS -->
                     </div>
-                    <div class="border-t border-gray-200 dark:border-gray-700 pt-4">
-                        <div class="flex justify-between mb-2">
-                            <span>Subtotal:</span>
-                            <span id="subtotal">R$ 0,00</span>
-                        </div>
-                        <div class="mb-4">
-                            <label for="customer-name" class="block text-sm font-medium mb-1">Nome Completo*</label>
-                            <input type="text" id="customer-name" class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600" required>
-                        </div>
-                        <div class="mb-4">
-                            <label for="customer-address" class="block text-sm font-medium mb-1">Endereço Completo*</label>
-                            <textarea id="customer-address" rows="3" class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600" required></textarea>
-                        </div>
-                        <button id="send-order" disabled class="send-btn w-full bg-gray-300 text-gray-600 py-3 rounded-md font-medium transition-colors">
-                            ENVIAR PEDIDO
-                        </button>
+                </div>
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-primary mb-4 border-b pb-2">AÇAÍ (COPOS E TIGELAS)</h2>
+                    <div class="space-y-4" id="acai">
+                        <!-- Açaí items will be inserted here by JS -->
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-primary mb-4 border-b pb-2">REFRIGERANTES</h2>
+                    <div class="space-y-4" id="drinks">
+                        <!-- Drinks will be inserted here by JS -->
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-primary mb-4 border-b pb-2">CERVEJAS</h2>
+                    <div class="space-y-4" id="beers">
+                        <!-- Beers will be inserted here by JS -->
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold text-primary mb-4 border-b pb-2">SUCOS</h2>
+                    <div class="space-y-4" id="juices">
+                        <!-- Juices will be inserted here by JS -->
                     </div>
                 </div>
             </div>
-        </main>
-    </div>
 
-    <!-- Mobile Cart Sidebar -->
-    <div id="mobile-cart" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
-        <div class="absolute right-0 top-0 h-full w-full max-w-md bg-white dark:bg-gray-800 shadow-lg transform transition-transform duration-300 translate-x-full">
-            <div class="p-4 flex justify-between items-center border-b dark:border-gray-700">
-                <h2 class="text-xl font-bold text-primary">Seu Carrinho</h2>
-                <button id="close-cart" class="p-2">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div id="mobile-cart-items" class="p-4 max-h-[60vh] overflow-y-auto">
-                <p class="text-gray-500 dark:text-gray-400 text-center py-4">Seu carrinho está vazio</p>
-            </div>
-            <div class="p-4 border-t dark:border-gray-700">
-                <div class="flex justify-between mb-2">
-                    <span>Subtotal:</span>
-                    <span id="mobile-subtotal">R$ 0,00</span>
+            <!-- Right Column - Combos, Waters, Candies, Extras and Cart -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 fade-in">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-primary mb-4 border-b pb-2">COMBOS</h2>
+                    <div class="space-y-4" id="combos">
+                        <!-- Combos will be inserted here by JS -->
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <label for="mobile-customer-name" class="block text-sm font-medium mb-1">Nome Completo*</label>
-                    <input type="text" id="mobile-customer-name" class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600" required>
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-primary mb-4 border-b pb-2">ÁGUAS</h2>
+                    <div class="space-y-4" id="waters">
+                        <!-- Waters will be inserted here by JS -->
+                    </div>
                 </div>
-                <div class="mb-4">
-                    <label for="mobile-customer-address" class="block text-sm font-medium mb-1">Endereço Completo*</label>
-                    <textarea id="mobile-customer-address" rows="3" class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600" required></textarea>
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-primary mb-4 border-b pb-2">BOMBONIERE</h2>
+                    <div class="space-y-4" id="candies">
+                        <!-- Candies will be inserted here by JS -->
+                    </div>
                 </div>
-                <button id="mobile-send-order" disabled class="send-btn w-full bg-gray-300 text-gray-600 py-3 rounded-md font-medium transition-colors">
-                    ENVIAR PEDIDO
-                </button>
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-primary mb-4 border-b pb-2">ACRÉSCIMOS (ADICIONAIS)</h2>
+                    <div class="space-y-4" id="extras">
+                        <!-- Extras will be inserted here by JS -->
+                    </div>
+                </div>
+                
+                <!-- Cart -->
+                <div id="cart-container" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-end">
+                    <div class="bg-white dark:bg-gray-800 w-full max-w-md h-full overflow-y-auto p-6 transform transition-transform duration-300">
+                        <div class="flex justify-between items-center mb-4">
+                            <h2 class="text-2xl font-bold text-primary">Seu Pedido</h2>
+                            <button id="close-cart" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+                                <i class="fas fa-times text-xl"></i>
+                            </button>
+                        </div>
+                        
+                        <div id="cart-items" class="mb-4 space-y-3">
+                            <!-- Cart items will be inserted here by JS -->
+                        </div>
+                        
+                        <div class="border-t pt-4 mb-4">
+                            <div class="flex justify-between font-bold text-lg">
+                                <span>Total:</span>
+                                <span id="cart-total">R$ 0,00</span>
+                            </div>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <div>
+                                <label for="customer-name" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Nome Completo</label>
+                                <input type="text" id="customer-name" class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600">
+                            </div>
+                            <div>
+                                <label for="customer-address" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Endereço Completo</label>
+                                <input type="text" id="customer-address" class="w-full px-3 py-2 border rounded-md dark:bg-gray-700 dark:border-gray-600">
+                            </div>
+                            
+                            <button id="send-order" class="w-full py-3 px-4 bg-gray-300 text-gray-700 font-bold rounded-md cursor-not-allowed" disabled>
+                                ENVIAR PEDIDO
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -209,15 +228,9 @@
                 { name: "REFRIGERANTE 600ML (Sprite, Fanta Laranja, Coca-Cola, Fanta Uva, Guaraná Antártica)", price: 9.00 },
                 { name: "H2O", price: 9.00 },
                 { name: "GUARANÁ MINEIRO 350ML", price: 5.00 },
+                { name: "REFRIGERANTE LATA (Coca-Cola, Fanta Laranja, Fanta Uva, Guaraná Antártica, Sprite)", price: 7.00 },
                 { name: "COCA-COLA ZERO 350ML", price: 7.00 },
                 { name: "RED BULL", price: 15.00 }
-            ],
-            sodas: [
-                { name: "REFRIGERANTE LATA (Coca-Cola)", price: 7.00 },
-                { name: "REFRIGERANTE LATA (Fanta Laranja)", price: 7.00 },
-                { name: "REFRIGERANTE LATA (Fanta Uva)", price: 7.00 },
-                { name: "REFRIGERANTE LATA (Guaraná Antártica)", price: 7.00 },
-                { name: "REFRIGERANTE LATA (Sprite)", price: 7.00 }
             ],
             beers: [
                 { name: "HEINEKEN 330ML", price: 11.00 },
@@ -277,329 +290,222 @@
             ]
         };
 
-        // Cart data
+        // Cart state
         let cart = [];
         
         // DOM elements
-        const cartItemsEl = document.getElementById('cart-items');
-        const mobileCartItemsEl = document.getElementById('mobile-cart-items');
         const cartCountEl = document.getElementById('cart-count');
-        const subtotalEl = document.getElementById('subtotal');
-        const mobileSubtotalEl = document.getElementById('mobile-subtotal');
+        const cartItemsEl = document.getElementById('cart-items');
+        const cartTotalEl = document.getElementById('cart-total');
+        const cartContainerEl = document.getElementById('cart-container');
+        const cartToggleEl = document.getElementById('cart-toggle');
+        const closeCartEl = document.getElementById('close-cart');
         const sendOrderBtn = document.getElementById('send-order');
-        const mobileSendOrderBtn = document.getElementById('mobile-send-order');
         const customerNameEl = document.getElementById('customer-name');
         const customerAddressEl = document.getElementById('customer-address');
-        const mobileCustomerNameEl = document.getElementById('mobile-customer-name');
-        const mobileCustomerAddressEl = document.getElementById('mobile-customer-address');
-        const cartBtn = document.getElementById('cart-btn');
-        const mobileCart = document.getElementById('mobile-cart');
-        const closeCartBtn = document.getElementById('close-cart');
-        const themeToggleBtn = document.getElementById('theme-toggle');
-        const categoryLinks = document.querySelectorAll('.category-link');
+        const themeToggleEl = document.getElementById('theme-toggle');
 
-        // Initialize the app
-        document.addEventListener('DOMContentLoaded', () => {
-            renderMenu();
-            setupEventListeners();
-            checkThemePreference();
-        });
-
-        // Render the menu
-        function renderMenu() {
-            const menuContainer = document.querySelector('main > div.lg\\:col-span-2');
-            
-            // Clear existing menu
-            menuContainer.innerHTML = '';
-            
-            // Render each category
-            renderCategory('hamburgers', 'Hambúrgueres', 'hamburgers');
-            renderCategory('fries', 'Fritas', 'fries');
-            renderCategory('acai', 'Açaí (Copos e Tigelas)', 'acai');
-            renderCategory('combos', 'Combos', 'combos');
-            renderCategory('drinks', 'Refrigerantes', 'drinks');
-            renderCategory('sodas', 'Refrigerantes em Lata', 'sodas');
-            renderCategory('beers', 'Cervejas', 'beers');
-            renderCategory('juices', 'Sucos', 'juices');
-            renderCategory('waters', 'Águas', 'waters');
-            renderCategory('candies', 'Bomboniere', 'candies');
-            renderCategory('extras', 'Acréscimos (Adicionais)', 'extras');
-        }
-
-        function renderCategory(categoryId, categoryName, anchorId) {
-            const menuContainer = document.querySelector('main > div.lg\\:col-span-2');
-            
-            const section = document.createElement('div');
-            section.className = 'mb-12 fade-in menu-category';
-            section.id = anchorId;
-            section.innerHTML = `
-                <h3 class="text-xl font-semibold mb-4 text-primary">${categoryName}</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="menu-section-${categoryId}"></div>
-            `;
-            menuContainer.appendChild(section);
-            
-            menuItems[categoryId].forEach(item => {
-                createMenuItem(item, categoryId);
-            });
-        }
-
-        function createMenuItem(item, categoryId) {
-            const container = document.getElementById(`menu-section-${categoryId}`);
-            
-            const itemEl = document.createElement('div');
-            itemEl.className = 'bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow';
-            itemEl.innerHTML = `
-                <div class="p-4">
-                    <div class="flex justify-between items-start">
-                        <h4 class="font-medium">${item.name}</h4>
-                        <span class="font-semibold text-primary">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
-                    </div>
-                    <button class="add-to-cart mt-3 w-full py-2 bg-primary hover:bg-secondary text-white rounded-md transition-colors" 
-                            data-name="${item.name}" data-price="${item.price}">
-                        Adicionar
-                    </button>
-                </div>
-            `;
-            container.appendChild(itemEl);
-        }
-
-        // Event listeners
-        function setupEventListeners() {
-            // Add to cart buttons
-            document.addEventListener('click', (e) => {
-                if (e.target.classList.contains('add-to-cart')) {
-                    const name = e.target.dataset.name;
-                    const price = parseFloat(e.target.dataset.price);
-                    addToCart(name, price);
+        // Initialize menu
+        function initMenu() {
+            Object.keys(menuItems).forEach(section => {
+                const container = document.getElementById(section);
+                if (container) {
+                    menuItems[section].forEach(item => {
+                        const itemEl = document.createElement('div');
+                        itemEl.className = 'flex justify-between items-center p-3 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md transition-colors';
+                        itemEl.innerHTML = `
+                            <div class="flex-1">
+                                <h3 class="font-medium">${item.name}</h3>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="font-bold text-primary">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+                                <button class="add-to-cart bg-primary text-white p-2 rounded-full hover:bg-orange-700 transition-colors" data-name="${item.name}" data-price="${item.price}">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        `;
+                        container.appendChild(itemEl);
+                    });
                 }
             });
-
-            // Cart buttons
-            cartBtn.addEventListener('click', () => {
-                mobileCart.classList.remove('hidden');
-                document.querySelector('#mobile-cart > div').classList.remove('translate-x-full');
-            });
-
-            closeCartBtn.addEventListener('click', () => {
-                document.querySelector('#mobile-cart > div').classList.add('translate-x-full');
-                setTimeout(() => {
-                    mobileCart.classList.add('hidden');
-                }, 300);
-            });
-
-            // Form validation
-            [customerNameEl, customerAddressEl, mobileCustomerNameEl, mobileCustomerAddressEl].forEach(el => {
-                el.addEventListener('input', validateForm);
-            });
-
-            // Send order buttons
-            sendOrderBtn.addEventListener('click', sendOrder);
-            mobileSendOrderBtn.addEventListener('click', sendOrder);
-
-            // Theme toggle
-            themeToggleBtn.addEventListener('click', toggleTheme);
-
-            // Category links
-            categoryLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const targetId = link.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
-                });
-            });
         }
 
-        // Cart functions
+        // Add to cart
         function addToCart(name, price) {
             const existingItem = cart.find(item => item.name === name);
             
             if (existingItem) {
                 existingItem.quantity += 1;
             } else {
-                cart.push({
-                    name,
-                    price,
-                    quantity: 1
-                });
+                cart.push({ name, price, quantity: 1 });
             }
             
             updateCart();
-            
-            // Show feedback
-            const feedback = document.createElement('div');
-            feedback.className = 'fixed bottom-4 right-4 bg-primary text-white px-4 py-2 rounded-md shadow-lg animate-bounce';
-            feedback.textContent = `${name} adicionado ao carrinho!`;
-            document.body.appendChild(feedback);
-            
-            setTimeout(() => {
-                feedback.remove();
-            }, 2000);
+            showCart();
         }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCart();
+        // Remove from cart
+        function removeFromCart(name) {
+            const itemIndex = cart.findIndex(item => item.name === name);
+            
+            if (itemIndex !== -1) {
+                if (cart[itemIndex].quantity > 1) {
+                    cart[itemIndex].quantity -= 1;
+                } else {
+                    cart.splice(itemIndex, 1);
+                }
+                
+                updateCart();
+            }
         }
 
+        // Update cart UI
         function updateCart() {
-            // Update cart count
-            const count = cart.reduce((total, item) => total + item.quantity, 0);
-            cartCountEl.textContent = count;
+            // Update count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCountEl.textContent = totalItems;
             
-            // Update cart items
-            renderCartItems();
-            
-            // Update subtotal
-            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            subtotalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-            mobileSubtotalEl.textContent = `R$ ${subtotal.toFixed(2).replace('.', ',')}`;
-            
-            // Validate form
-            validateForm();
-        }
-
-        function renderCartItems() {
-            // Desktop cart
-            if (cart.length === 0) {
-                cartItemsEl.innerHTML = '<p class="text-gray-500 dark:text-gray-400 text-center py-4">Seu carrinho está vazio</p>';
-                mobileCartItemsEl.innerHTML = '<p class="text-gray-500 dark:text-gray-400 text-center py-4">Seu carrinho está vazio</p>';
-                return;
-            }
-            
+            // Update items list
             cartItemsEl.innerHTML = '';
-            mobileCartItemsEl.innerHTML = '';
             
-            cart.forEach((item, index) => {
-                const itemEl = document.createElement('div');
-                itemEl.className = 'flex justify-between items-center py-3 border-b dark:border-gray-700 cart-item';
-                itemEl.innerHTML = `
-                    <div>
-                        <h4 class="font-medium">${item.name}</h4>
-                        <div class="flex items-center mt-1">
-                            <button class="quantity-btn text-sm px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded" data-index="${index}" data-action="decrease">-</button>
-                            <span class="mx-2">${item.quantity}</span>
-                            <button class="quantity-btn text-sm px-2 py-1 bg-gray-200 dark:bg-gray-700 rounded" data-index="${index}" data-action="increase">+</button>
-                            <span class="ml-4 font-semibold">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</span>
-                        </div>
-                    </div>
-                    <button class="remove-btn text-red-500 hover:text-red-700" data-index="${index}">
-                        <i class="fas fa-trash"></i>
-                    </button>
-                `;
-                cartItemsEl.appendChild(itemEl.cloneNode(true));
-                mobileCartItemsEl.appendChild(itemEl);
-            });
-            
-            // Add event listeners to quantity and remove buttons
-            document.querySelectorAll('.quantity-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const index = parseInt(e.target.dataset.index);
-                    const action = e.target.dataset.action;
-                    
-                    if (action === 'increase') {
-                        cart[index].quantity += 1;
-                    } else if (action === 'decrease') {
-                        if (cart[index].quantity > 1) {
-                            cart[index].quantity -= 1;
-                        } else {
-                            removeFromCart(index);
-                            return;
-                        }
-                    }
-                    
-                    updateCart();
-                });
-            });
-            
-            document.querySelectorAll('.remove-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    const index = parseInt(e.target.dataset.index);
-                    removeFromCart(index);
-                });
-            });
-        }
-
-        // Form validation
-        function validateForm() {
-            const name = customerNameEl.value.trim() || mobileCustomerNameEl.value.trim();
-            const address = customerAddressEl.value.trim() || mobileCustomerAddressEl.value.trim();
-            const hasItems = cart.length > 0;
-            
-            const isValid = name && address && hasItems;
-            
-            sendOrderBtn.disabled = !isValid;
-            mobileSendOrderBtn.disabled = !isValid;
-            
-            if (isValid) {
-                sendOrderBtn.classList.remove('bg-gray-300', 'text-gray-600');
-                sendOrderBtn.classList.add('bg-green-500', 'hover:bg-green-600', 'text-white');
-                mobileSendOrderBtn.classList.remove('bg-gray-300', 'text-gray-600');
-                mobileSendOrderBtn.classList.add('bg-green-500', 'hover:bg-green-600', 'text-white');
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = '<p class="text-gray-500 dark:text-gray-400">Seu carrinho está vazio</p>';
+                sendOrderBtn.disabled = true;
+                sendOrderBtn.className = 'w-full py-3 px-4 bg-gray-300 text-gray-700 font-bold rounded-md cursor-not-allowed';
             } else {
-                sendOrderBtn.classList.add('bg-gray-300', 'text-gray-600');
-                sendOrderBtn.classList.remove('bg-green-500', 'hover:bg-green-600', 'text-white');
-                mobileSendOrderBtn.classList.add('bg-gray-300', 'text-gray-600');
-                mobileSendOrderBtn.classList.remove('bg-green-500', 'hover:bg-green-600', 'text-white');
+                cart.forEach(item => {
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'flex justify-between items-center p-3 bg-gray-100 dark:bg-gray-700 rounded-md cart-item-enter';
+                    itemEl.innerHTML = `
+                        <div class="flex-1">
+                            <h3 class="font-medium">${item.name}</h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-300">R$ ${item.price.toFixed(2).replace('.', ',')} x ${item.quantity}</p>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="font-bold">R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}</span>
+                            <div class="flex items-center gap-1">
+                                <button class="remove-item text-red-500 hover:text-red-700 dark:hover:text-red-400 p-1" data-name="${item.name}">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <button class="add-item text-green-500 hover:text-green-700 dark:hover:text-green-400 p-1" data-name="${item.name}">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    cartItemsEl.appendChild(itemEl);
+                });
+                
+                // Update total
+                const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartTotalEl.textContent = `R$ ${total.toFixed(2).replace('.', ',')}`;
+                
+                // Check if order can be sent
+                checkOrderReady();
             }
         }
 
-        // Send order
-        function sendOrder() {
-            const name = customerNameEl.value.trim() || mobileCustomerNameEl.value.trim();
-            const address = customerAddressEl.value.trim() || mobileCustomerAddressEl.value.trim();
+        // Show/hide cart
+        function showCart() {
+            cartContainerEl.classList.remove('hidden');
+        }
+
+        function hideCart() {
+            cartContainerEl.classList.add('hidden');
+        }
+
+        // Check if order is ready to be sent
+        function checkOrderReady() {
+            const name = customerNameEl.value.trim();
+            const address = customerAddressEl.value.trim();
             
-            if (!name || !address || cart.length === 0) return;
+            if (name && address && cart.length > 0) {
+                sendOrderBtn.disabled = false;
+                sendOrderBtn.className = 'w-full py-3 px-4 bg-green-500 text-white font-bold rounded-md hover:bg-green-600 transition-colors';
+            } else {
+                sendOrderBtn.disabled = true;
+                sendOrderBtn.className = 'w-full py-3 px-4 bg-gray-300 text-gray-700 font-bold rounded-md cursor-not-allowed';
+            }
+        }
+
+        // Format order message for WhatsApp
+        function formatOrderMessage() {
+            const name = customerNameEl.value.trim();
+            const address = customerAddressEl.value.trim();
             
-            // Format order message
             let message = `Olá, este é o meu pedido de hoje!\n\n`;
-            message += `*Nome:* ${name}\n`;
+            message += `*PEDIDO FACE BURG*\n\n`;
+            message += `*Cliente:* ${name}\n`;
             message += `*Endereço:* ${address}\n\n`;
-            message += `*Itens do pedido:*\n`;
+            message += `*Itens:*\n`;
             
             cart.forEach(item => {
-                message += `- ${item.name} x${item.quantity} - R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}\n`;
+                message += `- ${item.name} (${item.quantity}x) - R$ ${(item.price * item.quantity).toFixed(2).replace('.', ',')}\n`;
             });
             
-            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
-            message += `\n*Total:* R$ ${subtotal.toFixed(2).replace('.', ',')}\n\n`;
-            message += `Horário do pedido: ${new Date().toLocaleString()}`;
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            message += `\n*Total: R$ ${total.toFixed(2).replace('.', ',')}*`;
             
-            // Encode for WhatsApp URL
-            const encodedMessage = encodeURIComponent(message);
-            const whatsappUrl = `https://wa.me/5538998722422?text=${encodedMessage}`;
-            
-            // Open WhatsApp
-            window.open(whatsappUrl, '_blank');
-            
-            // Clear cart
-            cart = [];
-            updateCart();
-            customerNameEl.value = '';
-            customerAddressEl.value = '';
-            mobileCustomerNameEl.value = '';
-            mobileCustomerAddressEl.value = '';
-            
-            // Show success message
-            alert('Pedido enviado com sucesso! Você será redirecionado para o WhatsApp.');
+            return encodeURIComponent(message);
         }
 
-        // Theme functions
-        function checkThemePreference() {
-            if (localStorage.getItem('darkMode') === 'true' || 
-                (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            initMenu();
+            
+            // Add to cart buttons
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('add-to-cart') || e.target.closest('.add-to-cart')) {
+                    const button = e.target.classList.contains('add-to-cart') ? e.target : e.target.closest('.add-to-cart');
+                    const name = button.dataset.name;
+                    const price = parseFloat(button.dataset.price);
+                    addToCart(name, price);
+                }
+                
+                // Remove item buttons in cart
+                if (e.target.classList.contains('remove-item') || e.target.closest('.remove-item')) {
+                    const button = e.target.classList.contains('remove-item') ? e.target : e.target.closest('.remove-item');
+                    const name = button.dataset.name;
+                    removeFromCart(name);
+                }
+                
+                // Add item buttons in cart
+                if (e.target.classList.contains('add-item') || e.target.closest('.add-item')) {
+                    const button = e.target.classList.contains('add-item') ? e.target : e.target.closest('.add-item');
+                    const name = button.dataset.name;
+                    const item = cart.find(item => item.name === name);
+                    if (item) addToCart(name, item.price);
+                }
+            });
+            
+            // Cart toggle
+            cartToggleEl.addEventListener('click', showCart);
+            closeCartEl.addEventListener('click', hideCart);
+            
+            // Check if order can be sent when inputs change
+            customerNameEl.addEventListener('input', checkOrderReady);
+            customerAddressEl.addEventListener('input', checkOrderReady);
+            
+            // Send order
+            sendOrderBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const message = formatOrderMessage();
+                window.open(`https://wa.me/5538998722422?text=${message}`, '_blank');
+            });
+            
+            // Theme toggle
+            themeToggleEl.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            });
+            
+            // Check for saved theme preference
+            if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
                 document.documentElement.classList.add('dark');
             } else {
                 document.documentElement.classList.remove('dark');
             }
-        }
-
-        function toggleTheme() {
-            const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('darkMode', isDark);
-        }
+        });
     </script>
 </body>
 </html>
